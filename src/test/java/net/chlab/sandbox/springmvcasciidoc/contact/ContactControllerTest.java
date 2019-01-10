@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.restdocs.RestDocumentationContextProvider;
 import org.springframework.restdocs.RestDocumentationExtension;
+import org.springframework.restdocs.payload.FieldDescriptor;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -25,6 +26,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(ContactController.class)
 @ExtendWith(RestDocumentationExtension.class)
 class ContactControllerTest {
+
+    final FieldDescriptor[] contactFields = {
+            fieldWithPath("id").description("Unique identifier of the contact"),
+            fieldWithPath("firstName").description("The first name of the contact"),
+            fieldWithPath("lastName").description("The last name of the contact"),
+            fieldWithPath("email").description("The email address of the contact")
+    };
 
     MockMvc mvc;
 
@@ -62,10 +70,7 @@ class ContactControllerTest {
                 .andExpect(content().json("[{'id':'DUMMY_ID','firstName':'John','lastName':'Doe'," +
                         "'email':'john.doe@example.com'}]"))
                 .andDo(document("contacts-list-sample", responseFields(
-                        fieldWithPath("[].id").description("unique identifier of the contact"),
-                        fieldWithPath("[].firstName").description("the first name of the contact"),
-                        fieldWithPath("[].lastName").description("the last name of the contact"),
-                        fieldWithPath("[].email").description("the email address of the contact")
-                )));
+                        fieldWithPath("[]").description("An array of contacts"))
+                        .andWithPrefix("[].", contactFields)));
     }
 }
