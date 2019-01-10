@@ -1,0 +1,15 @@
+= Sample Application API Guide
+
+[[resources]]
+= Resources
+
+[[resources-contacts]]
+== Contacts
+The Contacts resource is used to create and list contacts.
+
+[[resources-contacts-list]]
+=== Listing contacts
+
+A `GET` request will list all of the contacts.
+
+operation::contacts-list-sample[snippets='http-request,http-response,response-fields']
