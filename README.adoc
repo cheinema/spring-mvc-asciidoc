@@ -1,0 +1,2 @@
+= Spring MVC & AsciiDoc
+Demonstration of generated REST documentation of Spring MVC endpoints using AsciiDoc.

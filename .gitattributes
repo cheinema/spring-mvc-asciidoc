@@ -1,0 +1,23 @@
+# Handle line endings automatically for files detected as text
+# and leave all files detected as binary untouched.
+* text=auto
+
+#
+# The above will handle all files NOT found below
+#
+# These files are text and should be normalized (Convert crlf => lf)
+*.java          text
+*.properties    text
+*.txt           text
+*.xml           text
+*.yml           text
+
+# These files should be left in a fixed format
+*.cmd           eol=crlf
+*.sh            eol=lf
+mvnw            eol=lf
+
+# These files are binary and should be left untouched
+# (binary is a macro for -text -diff)
+*.class         binary
+*.jar           binary
