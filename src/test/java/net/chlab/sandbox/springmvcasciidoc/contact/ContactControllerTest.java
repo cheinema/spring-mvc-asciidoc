@@ -30,9 +30,9 @@ class ContactControllerTest {
 
     final FieldDescriptor[] contactFields = {
             fieldWithPath("id").description("Unique identifier of the contact"),
-            fieldWithPath("firstName").description("The first name of the contact"),
-            fieldWithPath("lastName").description("The last name of the contact"),
-            fieldWithPath("email").description("The email address of the contact")
+            fieldWithPath("firstName").description("The optional first name of the contact").optional(),
+            fieldWithPath("lastName").description("The optional last name of the contact").optional(),
+            fieldWithPath("email").description("The optional email address of the contact").optional()
     };
 
     MockMvc mvc;
